@@ -1,0 +1,15 @@
+# Ignore build artifacts and Gradle cache
+.gradle/
+build/
+out/
+
+# IntelliJ IDEA-specific
+.idea/
+*.iml
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
