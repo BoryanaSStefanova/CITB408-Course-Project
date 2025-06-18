@@ -10,21 +10,20 @@ public abstract class Product {
 
     public double sellingPrice;
 
-    public Product(int id, String name, double deliveryPrice, LocalDate expireDate, double sellingPrice) {
+    public ProductType type;
+
+    public Product(int id, String name, double deliveryPrice, LocalDate expireDate, double sellingPrice, ProductType type) {
         this.id = id;
         this.name = name;
         this.deliveryPrice = deliveryPrice;
         this.expireDate = expireDate;
         this.sellingPrice = sellingPrice;
+        this.type = type;
     }
-
-
-    public abstract double calculateSellingPrice(LocalDate currentDate);
 
     public boolean isExpired(LocalDate currentDate){
         return expireDate.isBefore(currentDate) || expireDate.isEqual(currentDate);
     }
-
 
     public int getId() {
         return id;
@@ -64,6 +63,14 @@ public abstract class Product {
 
     public void setSellingPrice(double sellingPrice) {
         this.sellingPrice = sellingPrice;
+    }
+
+    public ProductType getType() {
+        return type;
+    }
+
+    public void setType(ProductType type) {
+        this.type = type;
     }
 
     @Override

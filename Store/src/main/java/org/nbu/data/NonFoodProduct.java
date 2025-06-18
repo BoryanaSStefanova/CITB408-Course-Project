@@ -4,14 +4,13 @@ import java.time.LocalDate;
 
 public class NonFoodProduct extends Product{
 
-    private double markupPercent;//percent for discount of goods according to expire date
+    private double markupPercent = 0.5;//percent for discount of goods according to expire date
 
-    public NonFoodProduct(int id, String name, double deliveryPrice, LocalDate expireDate, double sellingPrice) {
-        super(id, name, deliveryPrice, expireDate, sellingPrice);
-    }
+    private double discountPercent = 0.1;
 
-    @Override
-    public double calculateSellingPrice(LocalDate currentDate) {
-        return 0;
+    private int daysBeforeExpiration = 10;
+
+    public NonFoodProduct(int id, String name, double deliveryPrice, LocalDate expireDate, double sellingPrice, ProductType nonFood) {
+        super(id, name, deliveryPrice, expireDate, sellingPrice, ProductType.NON_FOOD);
     }
 }
