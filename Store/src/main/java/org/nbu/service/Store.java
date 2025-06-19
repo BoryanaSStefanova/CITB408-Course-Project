@@ -1,12 +1,21 @@
-package org.nbu.data;
+package org.nbu.service;
+
+import org.nbu.data.Cashier;
+import org.nbu.data.Product;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.nbu.data.Receipt;
+import org.nbu.exception.InsufficientQuantityException;
 public class Store {
 
     private List<Product> products = new ArrayList<>();
+
+    private List<Receipt> receipts = new ArrayList<>();
+
+    private List<Cashier> cashiers = new ArrayList<>();
     private double foodMarkup = 0.3;
     private double foodDiscount = 0.2;
     private int foodDaysBeforeExpiration = 5;
