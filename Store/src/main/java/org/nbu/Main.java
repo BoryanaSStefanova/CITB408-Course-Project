@@ -1,5 +1,4 @@
 package org.nbu;
-
 import org.nbu.data.FoodProduct;
 import org.nbu.data.NonFoodProduct;
 import org.nbu.data.Product;
@@ -8,7 +7,6 @@ import org.nbu.data.Store;
 
 import java.sql.SQLOutput;
 import java.time.LocalDate;
-
 public class Main {
     public static void main(String[] args) {
 
