@@ -7,10 +7,10 @@ public abstract class Product {
     public String name;
     public double deliveryPrice;
     public LocalDate expireDate;
-
     public double sellingPrice;
-
     public ProductType type;
+
+    public double quantity;
 
     public Product(int id, String name, double deliveryPrice, LocalDate expireDate, double sellingPrice, ProductType type) {
         this.id = id;
@@ -19,6 +19,7 @@ public abstract class Product {
         this.expireDate = expireDate;
         this.sellingPrice = sellingPrice;
         this.type = type;
+        this.quantity = quantity;
     }
 
     public boolean isExpired(LocalDate currentDate){
@@ -73,6 +74,14 @@ public abstract class Product {
         this.type = type;
     }
 
+    public double getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -82,5 +91,12 @@ public abstract class Product {
                 ", expireDate=" + expireDate +
                 ", sellingPrice=" + sellingPrice +
                 '}';
+    }
+
+    public void quantityCheckForProductAvailability(double amount){
+        if(amount > quantity){
+            throw new IllegalArgumentException("Not enough quantity available of this product" + name);
+        }
+        this.quantity -= amount;
     }
 }
