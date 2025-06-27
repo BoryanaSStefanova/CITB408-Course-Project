@@ -1,8 +1,12 @@
 package org.nbu.data;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.nbu.exception.InsufficientQuantityException;
 import org.nbu.service.Store;
 
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -49,5 +53,33 @@ class StoreTest {
     void calculateProductPrice() {
         double price = store.calculateProductPrice(nonFood, LocalDate.now());
         assertEquals(5.0, price, 0.001);
+    }
+
+    @org.junit.jupiter.api.Test
+    void generateReceiptAfterSellingProducts(){
+        freshFood.setQuantity(5);
+        store.addProduct(freshFood);
+        Cashier cashier = new Cashier(2, "Mitaka", 2400);
+
+        Map<Product, Integer> toSell = new HashMap<>();
+        toSell.put(freshFood, 2);
+
+        store.sellProduct(cashier, toSell, LocalDate.now(), 100.0);
+        assertEquals(3, freshFood.getQuantity());
+        assertEquals(1, store.getTotalReceipts());
+        assertTrue(store.getTotalTurnover() > 0);
+    }
+
+    @org.junit.jupiter.api.Test
+    void productWithInsufficientQuantity(){
+        freshFood.setQuantity(1);
+        store.addProduct(freshFood);
+        Cashier cashier = new Cashier(2, "Mitaka", 2400);
+        Map<Product, Integer> toSell = new HashMap<>();
+        toSell.put(freshFood, 2);
+
+        assertThrows(InsufficientQuantityException.class, () -> {
+            store.sellProduct(cashier, toSell, LocalDate.now(), 100.0);
+        });
     }
 }

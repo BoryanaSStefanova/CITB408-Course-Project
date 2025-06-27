@@ -1,7 +1,6 @@
 package org.nbu;
 import org.nbu.data.*;
 import org.nbu.service.Store;
-
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
@@ -79,12 +78,8 @@ public class Main {
             System.out.println("Cashier(name): " + r.getCashier().getCashier_name());
         }
 
-
         double profit = store.calculateProfit();
         System.out.println("Profit: " + profit);
-
         System.out.println("Goodbye world!");
     }
-
-
 }
