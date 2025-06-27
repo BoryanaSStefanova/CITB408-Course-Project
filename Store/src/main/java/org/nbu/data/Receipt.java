@@ -16,7 +16,7 @@ public class Receipt implements Serializable {
     public Receipt(Cashier cashier, Map<Product, Integer> productQuantityPriceInformation, double totalSum) {
         this.number = receiptCounter.getAndIncrement();
         this.cashier = cashier;
-        this.timestampOfReceipt = timestampOfReceipt;
+        this.timestampOfReceipt =LocalDateTime.now();
         this.productQuantityPriceInformation = productQuantityPriceInformation;
         this.totalSum = totalSum;
     }

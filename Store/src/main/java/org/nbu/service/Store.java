@@ -129,7 +129,8 @@ public Receipt sellProduct(Cashier cashier, Map<Product, Integer> productsToSell
             }
 
             writer.println("----------------------------");
-            writer.printf("TOTAL: %.2f%n", receipt.getTotalSum());
+            writer.printf("Total: %.2f%n", receipt.getTotalSum());
+            writer.printf("Total turnover: %.2f BGN%n", getTotalTurnover());
         }catch (IOException e){
             System.out.println("Error saving receipt to file: " + e.getMessage());
         }

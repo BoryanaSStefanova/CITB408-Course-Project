@@ -1,6 +1,8 @@
 package org.nbu.data;
 
-public class Cashier {
+import java.io.Serializable;
+
+public class Cashier implements Serializable {
     public int cashier_id;
     public String cashier_name;
     public double monthlySalary;
