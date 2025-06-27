@@ -1,8 +1,9 @@
 package org.nbu.data;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Product {
+public abstract class Product implements Serializable {
     public int id;
     public String name;
     public double deliveryPrice;
@@ -19,8 +20,8 @@ public abstract class Product {
         this.expireDate = expireDate;
         this.sellingPrice = sellingPrice;
         this.type = type;
-        this.quantity = quantity;
     }
+
 
     public boolean isExpired(LocalDate currentDate){
         return expireDate.isBefore(currentDate) || expireDate.isEqual(currentDate);
@@ -90,13 +91,17 @@ public abstract class Product {
                 ", deliveryPrice=" + deliveryPrice +
                 ", expireDate=" + expireDate +
                 ", sellingPrice=" + sellingPrice +
+                ", type=" + type +
+                ", quantity=" + quantity +
                 '}';
     }
 
-    public void quantityCheckForProductAvailability(double amount){
-        if(amount > quantity){
-            throw new IllegalArgumentException("Not enough quantity available of this product" + name);
+    public void reduceProductQuantity(int amount){
+        if(amount > this.quantity){
+            throw new IllegalArgumentException(("Trying to sell more than what is in stock!" + name));
         }
         this.quantity -= amount;
     }
+
+
 }
